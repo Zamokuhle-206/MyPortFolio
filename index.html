@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serene Memorial Assurance – Funeral Cover from R50/month</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark:   #2d4a2d;
+    --green:        #3a5f3a;
+    --green-mid:    #4a7a4a;
+    --green-light:  #6a9e6a;
+    --green-pale:   #e8f0e8;
+    --green-wash:   #f2f7f2;
+    --cream:        #faf8f4;
+    --cream-warm:   #f5f0e8;
+    --white:        #ffffff;
+    --text-dark:    #2a2a2a;
+    --text-body:    #444444;
+    --text-muted:   #767676;
+    --border:       #d4e0d4;
+    --shadow-soft:  0 2px 16px rgba(45,74,45,0.08);
+    --shadow-warm:  0 4px 24px rgba(45,74,45,0.12);
+    --radius:       8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-body);
+    background: var(--white);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--green-dark); line-height: 1.25; }
+  h4 { font-family: 'Lora', serif; color: var(--green-dark); }
+  p { color: var(--text-body); }
+  a { color: var(--green); text-decoration: none; }
+  a:hover { color: var(--green-mid); }
+
+  /* ─── TOP BAR ─── */
+  .top-bar {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.82);
+    font-size: 13px;
+    padding: 8px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .top-bar a { color: rgba(255,255,255,0.85); }
+  .top-bar a:hover { color: #fff; }
+  .top-bar-left { display: flex; gap: 24px; }
+  .top-bar-item { display: flex; align-items: center; gap: 6px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 900;
+    background: var(--white);
+    border-bottom: 2px solid var(--green);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 68px;
+    box-shadow: 0 2px 8px rgba(45,74,45,0.1);
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+
+  .nav-logo-cross {
+    width: 42px; height: 42px;
+    background: var(--green); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .cross-svg { width: 22px; height: 22px; stroke: white; stroke-width: 2.5; stroke-linecap: round; fill: none; }
+
+  .nav-logo-words { display: flex; flex-direction: column; line-height: 1; }
+  .nav-logo-words .line1 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--green-dark); }
+  .nav-logo-words .line2 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--green-light); margin-top: 2px; }
+
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 15px; color: var(--text-dark); font-weight: 500;
+    padding: 4px 0; border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); border-bottom-color: var(--green); }
+
+  .btn-nav-quote {
+    background: var(--green); color: white !important;
+    padding: 10px 22px !important; border-radius: var(--radius);
+    font-weight: 600 !important; font-size: 14px !important;
+    border-bottom: none !important; transition: background 0.2s !important; cursor: pointer;
+  }
+  .btn-nav-quote:hover { background: var(--green-dark) !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span { width: 24px; height: 2px; background: var(--green-dark); display: block; border-radius: 2px; transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: var(--white); border-bottom: 2px solid var(--green);
+    padding: 20px 5%; z-index: 850; box-shadow: var(--shadow-warm);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block; padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dark); font-size: 16px; font-weight: 500;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu .btn-mobile-quote {
+    display: block; text-align: center; margin-top: 16px;
+    background: var(--green); color: white; padding: 14px;
+    border-radius: var(--radius); font-weight: 600; font-size: 15px;
+  }
+
+  /* ─── SHARED BUTTONS ─── */
+  .btn-green {
+    display: inline-block; background: var(--green); color: white;
+    font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 600;
+    padding: 14px 30px; border-radius: var(--radius);
+    border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none;
+  }
+  .btn-green:hover { background: var(--green-dark); color: white; transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-block; background: transparent; color: var(--green);
+    font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 600;
+    padding: 13px 30px; border-radius: var(--radius);
+    border: 2px solid var(--green); cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .btn-outline:hover { background: var(--green); color: white; }
+
+  /* ─── HERO ─── */
+  #home {
+    background: var(--green-dark);
+    padding: 70px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+  #home::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse at 0% 100%, rgba(74,122,74,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 100% 0%, rgba(74,122,74,0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 60px; align-items: center; position: relative; z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 22px; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.6);
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 32px; height: 1px; background: rgba(255,255,255,0.3);
+  }
+
+  .hero-h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4.5vw, 52px); color: white; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+  .hero-h1 em { font-style: italic; color: #a8d4a8; }
+
+  .hero-lead { font-family: 'Lora', serif; font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 36px; max-width: 520px; }
+
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-hero-main {
+    background: white; color: var(--green-dark);
+    font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 700;
+    padding: 14px 30px; border-radius: var(--radius); border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block;
+  }
+  .btn-hero-main:hover { background: var(--cream); color: var(--green-dark); transform: translateY(-1px); }
+
+  .btn-hero-ghost {
+    background: transparent; color: white;
+    font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 600;
+    padding: 13px 30px; border-radius: var(--radius);
+    border: 1.5px solid rgba(255,255,255,0.5); cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-hero-ghost:hover { border-color: white; background: rgba(255,255,255,0.08); color: white; }
+
+  .hero-trust { display: flex; gap: 28px; margin-top: 44px; padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .hero-trust-num { font-family: 'Playfair Display', serif; font-size: 30px; color: #a8d4a8; display: block; line-height: 1; }
+  .hero-trust-label { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  .hero-aside {
+    background: white; border-radius: 10px; padding: 32px 28px;
+    width: 280px; flex-shrink: 0; box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  }
+  .hero-aside-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--green-dark); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--green-pale); }
+  .aside-feat { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+  .aside-feat-icon { font-size: 20px; margin-top: 1px; flex-shrink: 0; }
+  .aside-feat-text strong { display: block; font-size: 14px; color: var(--text-dark); font-weight: 600; }
+  .aside-feat-text span { font-size: 12px; color: var(--text-muted); }
+  .aside-divider { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+  .aside-fsca { background: var(--green-wash); border-radius: 6px; padding: 12px 14px; font-size: 12px; color: var(--green-dark); border-left: 3px solid var(--green); line-height: 1.5; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 72px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label { display: block; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--green-light); font-weight: 600; margin-bottom: 10px; }
+  .section-title { font-size: clamp(26px, 3.5vw, 40px); margin-bottom: 14px; }
+  .section-lead { font-family: 'Lora', serif; font-size: 17px; color: var(--text-muted); line-height: 1.75; max-width: 600px; }
+  .section-header { margin-bottom: 50px; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-lead { margin: 0 auto; }
+
+  .divider-leaf { text-align: center; color: var(--green-light); font-size: 18px; margin: 4px 0 14px; letter-spacing: 8px; }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--cream); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about-body { font-family: 'Lora', serif; font-size: 16px; line-height: 1.85; color: var(--text-body); margin-bottom: 18px; }
+  .about-values { margin-top: 28px; border-top: 1px solid var(--border); padding-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .about-value { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-dark); font-weight: 500; }
+  .check-circle { width: 20px; height: 20px; border-radius: 50%; background: var(--green-pale); border: 1.5px solid var(--green-light); display: flex; align-items: center; justify-content: center; color: var(--green); font-size: 11px; flex-shrink: 0; font-weight: 700; }
+
+  .about-promise { background: var(--green); color: white; border-radius: 10px; padding: 32px; margin-bottom: 24px; }
+  .about-promise h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: white; margin-bottom: 14px; }
+  .about-promise p { font-family: 'Lora', serif; font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.8; }
+  .about-promise-list { margin-top: 18px; list-style: none; }
+  .about-promise-list li { padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.15); font-size: 14px; color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 10px; }
+  .about-promise-list li::before { content: '✓'; color: #a8d4a8; font-weight: 700; }
+
+  .about-cert { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; font-size: 14px; color: var(--text-body); }
+  .about-cert-icon { font-size: 32px; }
+  .about-cert strong { display: block; color: var(--text-dark); }
+
+  /* ─── POLICIES ─── */
+  #policies { background: var(--white); }
+  .policies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  .policy-card { border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--white); transition: box-shadow 0.3s, transform 0.3s; }
+  .policy-card:hover { box-shadow: var(--shadow-warm); transform: translateY(-4px); }
+  .policy-card.featured { border-color: var(--green); box-shadow: 0 4px 24px rgba(58,95,58,0.15); }
+
+  .policy-header { background: var(--green-wash); padding: 24px 28px 20px; border-bottom: 1px solid var(--border); position: relative; }
+  .policy-card.featured .policy-header { background: var(--green); }
+
+  .policy-popular { position: absolute; top: 14px; right: 14px; background: white; color: var(--green-dark); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 50px; border: 1px solid var(--green-light); }
+  .policy-card.featured .policy-popular { background: #a8d4a8; color: var(--green-dark); border-color: #a8d4a8; }
+
+  .policy-tier-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--green-light); font-weight: 600; margin-bottom: 6px; }
+  .policy-card.featured .policy-tier-label { color: rgba(255,255,255,0.7); }
+
+  .policy-name { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--green-dark); font-weight: 700; }
+  .policy-card.featured .policy-name { color: white; }
+
+  .policy-price-row { display: flex; align-items: baseline; gap: 3px; margin-top: 10px; }
+  .policy-price-from { font-size: 13px; color: var(--text-muted); }
+  .policy-price-main { font-family: 'Playfair Display', serif; font-size: 44px; color: var(--green-dark); line-height: 1; font-weight: 400; }
+  .policy-price-per { font-size: 13px; color: var(--text-muted); }
+  .policy-card.featured .policy-price-from, .policy-card.featured .policy-price-per { color: rgba(255,255,255,0.65); }
+  .policy-card.featured .policy-price-main { color: white; }
+
+  .policy-body { padding: 24px 28px; }
+
+  .policy-cover-box { background: var(--green-pale); border-radius: 6px; padding: 12px 16px; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; }
+  .policy-cover-label { font-size: 13px; color: var(--green-dark); font-weight: 500; }
+  .policy-cover-amount { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--green); font-weight: 700; }
+
+  .policy-features { list-style: none; margin-bottom: 24px; }
+  .policy-features li { padding: 9px 0; border-bottom: 1px solid var(--green-pale); font-size: 14px; color: var(--text-body); display: flex; align-items: flex-start; gap: 9px; line-height: 1.5; }
+  .policy-features li:last-child { border-bottom: none; }
+  .policy-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+  .btn-policy { width: 100%; padding: 13px; border-radius: var(--radius); font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: 'Source Sans 3', sans-serif; transition: all 0.2s; }
+  .btn-policy-outline { background: transparent; border: 2px solid var(--green); color: var(--green); }
+  .btn-policy-outline:hover { background: var(--green); color: white; }
+  .btn-policy-solid { background: var(--green); color: white; border: 2px solid var(--green); }
+  .btn-policy-solid:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+  /* ─── WHY CHOOSE US ─── */
+  #why { background: var(--green-wash); }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+  .benefit-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 30px 28px; border-top: 3px solid var(--green); transition: box-shadow 0.3s; }
+  .benefit-card:hover { box-shadow: var(--shadow-warm); }
+
+  .benefit-icon-wrap { width: 52px; height: 52px; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
+  .benefit-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--green-dark); margin-bottom: 10px; }
+  .benefit-text { font-size: 14px; color: var(--text-body); line-height: 1.75; font-weight: 300; }
+
+  /* ─── HOW IT WORKS ─── */
+  #howitworks { background: var(--cream-warm); }
+  .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; position: relative; }
+  .steps-row::before { content: ''; position: absolute; top: 32px; left: calc(16.67% + 16px); right: calc(16.67% + 16px); height: 2px; border-top: 2px dashed var(--green-light); z-index: 0; }
+
+  .step { text-align: center; position: relative; z-index: 1; }
+  .step-circle { width: 64px; height: 64px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; font-family: 'Playfair Display', serif; font-size: 28px; color: white; font-weight: 700; border: 4px solid var(--cream-warm); box-shadow: 0 0 0 2px var(--green-light); }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--green-dark); margin-bottom: 10px; }
+  .step-text { font-size: 14px; color: var(--text-body); line-height: 1.75; }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--white); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+
+  .testimonial-card { background: var(--cream); border: 1px solid var(--border); border-radius: 10px; padding: 32px; border-left: 4px solid var(--green); }
+  .testimonial-text { font-family: 'Lora', serif; font-size: 16px; font-style: italic; color: var(--text-body); line-height: 1.85; margin-bottom: 24px; }
+  .testimonial-text::before { content: '\201C'; font-size: 40px; color: var(--green-light); line-height: 0; vertical-align: -14px; margin-right: 4px; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .testimonial-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; color: white; font-weight: 600; flex-shrink: 0; }
+  .testimonial-name { font-weight: 600; font-size: 15px; color: var(--text-dark); }
+  .testimonial-loc { font-size: 13px; color: var(--text-muted); }
+  .testimonial-stars { color: #c9a030; font-size: 14px; margin-top: 2px; }
+
+  /* ─── CLAIMS ─── */
+  #claims { background: var(--green); }
+  .claims-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+
+  .claims-left .section-label { color: #a8d4a8; }
+  .claims-left .section-title { color: white; }
+  .claims-left p { color: rgba(255,255,255,0.8); font-family: 'Lora', serif; font-size: 16px; line-height: 1.85; margin: 16px 0 28px; }
+
+  .claims-list { list-style: none; }
+  .claims-list li { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 15px; }
+  .claims-list li:last-child { border-bottom: none; }
+  .claims-list-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .claims-list li strong { display: block; color: white; margin-bottom: 2px; }
+  .claims-list li span { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+  .claims-right { background: white; border-radius: 10px; padding: 40px 36px; text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.15); }
+  .claims-big-num { font-family: 'Playfair Display', serif; font-size: 96px; color: var(--green); line-height: 1; font-weight: 400; }
+  .claims-big-label { font-family: 'Lora', serif; font-size: 18px; color: var(--green-dark); margin: 6px 0 20px; display: block; }
+  .claims-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+  .claims-right p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 24px; }
+
+  /* ─── FAQ ─── */
+  #faq { background: var(--green-wash); }
+  .faq-wrap { max-width: 740px; margin: 0 auto; }
+  .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+  .faq-item.open { border-color: var(--green-light); box-shadow: var(--shadow-soft); }
+
+  .faq-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 22px; background: none; border: none; cursor: pointer; text-align: left; font-family: 'Lora', serif; font-size: 16px; color: var(--green-dark); font-weight: 500; }
+  .faq-btn:hover { color: var(--green); }
+  .faq-icon { width: 26px; height: 26px; flex-shrink: 0; background: var(--green-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--green); font-size: 18px; font-weight: 700; transition: transform 0.3s, background 0.2s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--green); color: white; }
+
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .faq-item.open .faq-answer { max-height: 260px; }
+  .faq-answer-inner { padding: 16px 22px 20px; font-size: 15px; color: var(--text-body); line-height: 1.8; border-top: 1px solid var(--green-pale); }
+
+  /* ─── CONTACT / FOOTER ─── */
+  #contact { background: var(--green-dark); padding-bottom: 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; padding-bottom: 64px; }
+
+  .contact-left .section-label { color: #a8d4a8; }
+  .contact-left .section-title { color: white; }
+  .contact-left p { color: rgba(255,255,255,0.75); font-family: 'Lora', serif; font-size: 16px; line-height: 1.8; margin: 14px 0 30px; }
+
+  .contact-details { display: grid; gap: 16px; }
+  .contact-detail { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; background: rgba(255,255,255,0.06); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
+  .contact-detail-icon { font-size: 20px; flex-shrink: 0; }
+  .contact-detail strong { display: block; color: white; font-size: 14px; margin-bottom: 2px; }
+  .contact-detail span { color: rgba(255,255,255,0.65); font-size: 14px; }
+
+  .contact-form-panel { background: var(--white); border-radius: 10px; padding: 36px; box-shadow: 0 8px 40px rgba(0,0,0,0.2); }
+  .contact-form-panel h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--green-dark); margin-bottom: 24px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 11px 14px; background: var(--green-wash);
+    border: 1.5px solid var(--border); border-radius: 6px;
+    font-size: 14px; color: var(--text-dark); font-family: 'Source Sans 3', sans-serif;
+    outline: none; transition: border-color 0.2s; appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); background: white; }
+
+  .footer-bar { border-top: 1px solid rgba(255,255,255,0.12); padding: 24px 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 16px; color: rgba(255,255,255,0.8); }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.55); font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: #a8d4a8; }
+  .footer-copy { color: rgba(255,255,255,0.4); font-size: 13px; }
+  .footer-disclaimer { background: rgba(0,0,0,0.25); padding: 18px 5%; font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.7; text-align: center; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(20,35,20,0.7); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.active { display: flex; }
+
+  .modal { background: var(--white); border-radius: 10px; width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto; position: relative; box-shadow: 0 20px 70px rgba(0,0,0,0.3); animation: slideUp 0.3s ease; }
+  @keyframes slideUp { from { transform: translateY(28px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .modal-head { background: var(--green); padding: 28px 32px; border-radius: 10px 10px 0 0; position: relative; }
+  .modal-head h2 { font-family: 'Playfair Display', serif; font-size: 26px; color: white; margin-bottom: 4px; }
+  .modal-head p { color: rgba(255,255,255,0.75); font-size: 14px; }
+  .modal-close-btn { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; background: rgba(255,255,255,0.15); border: none; border-radius: 50%; cursor: pointer; color: white; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .modal-close-btn:hover { background: rgba(255,255,255,0.28); }
+
+  .modal-form { padding: 28px 32px; }
+  .modal-form .form-group label { color: var(--text-dark); }
+  .modal-form .form-group input, .modal-form .form-group select { background: var(--green-wash); border-color: var(--border); }
+  .modal-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; line-height: 1.6; }
+
+  .modal-success { display: none; text-align: center; padding: 20px 10px; }
+  .modal-success .success-mark { font-size: 56px; margin-bottom: 14px; }
+  .modal-success h3 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--green-dark); margin-bottom: 10px; }
+  .modal-success p { color: var(--text-muted); font-size: 15px; line-height: 1.7; }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 920px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-aside { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .policies-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; }
+    .steps-row { grid-template-columns: 1fr; }
+    .steps-row::before { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .claims-inner { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .top-bar { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 52px 5%; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .hero-trust { flex-direction: column; gap: 16px; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-bar { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+    .modal-head, .modal-form { padding: 24px; }
+    .about-values { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <div class="top-bar-item">📞 <a href="tel:0800123456">0800 123 456</a> (24/7 Claims)</div>
+    <div class="top-bar-item">✉️ <a href="mailto:info@serenemem.co.za">info@serenemem.co.za</a></div>
+  </div>
+  <div class="top-bar-item">FSCA Registered &amp; Licensed · FSP No. 45678</div>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-cross">
+      <svg class="cross-svg" viewBox="0 0 22 22"><line x1="11" y1="2" x2="11" y2="20"/><line x1="2" y1="11" x2="20" y2="11"/></svg>
+    </div>
+    <div class="nav-logo-words">
+      <span class="line1">Serene Memorial</span>
+      <span class="line2">Assurance</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#policies">Policies</a></li>
+    <li><a href="#claims">Claims</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" class="btn-nav-quote" onclick="openModal(event)">Get a Quote</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#about" onclick="closeMobile()">About Us</a>
+  <a href="#policies" onclick="closeMobile()">Our Policies</a>
+  <a href="#claims" onclick="closeMobile()">Claims</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#" class="btn-mobile-quote" onclick="openModal(event);closeMobile()">Get a Free Quote</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Caring for South African Families Since 2008</div>
+      <h1 class="hero-h1">Protect Your Loved Ones –<br><em>Affordable Funeral Cover</em><br>from R50 per month</h1>
+      <p class="hero-lead">When the time comes, your family deserves to grieve without the burden of financial worry. We make it simple, affordable, and dignified.</p>
+      <div class="hero-ctas">
+        <button class="btn-hero-main" onclick="openModal(event)">Get a Free Quote</button>
+        <a href="#policies" class="btn-hero-ghost">View Our Plans</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-item"><span class="hero-trust-num">50 000+</span><span class="hero-trust-label">Families Protected</span></div>
+        <div class="hero-trust-item"><span class="hero-trust-num">24 hrs</span><span class="hero-trust-label">Payout Guarantee</span></div>
+        <div class="hero-trust-item"><span class="hero-trust-num">15 yrs</span><span class="hero-trust-label">In Service</span></div>
+      </div>
+    </div>
+    <div class="hero-aside">
+      <div class="hero-aside-title">Why Families Trust Us</div>
+      <div class="aside-feat"><div class="aside-feat-icon">⚡</div><div class="aside-feat-text"><strong>24-Hour Payout</strong><span>Funds paid within one business day</span></div></div>
+      <div class="aside-feat"><div class="aside-feat-icon">🏥</div><div class="aside-feat-text"><strong>No Medical Exam</strong><span>Open to anyone aged 18 to 75</span></div></div>
+      <div class="aside-feat"><div class="aside-feat-icon">📌</div><div class="aside-feat-text"><strong>Fixed Monthly Premium</strong><span>Your rate never goes up with age</span></div></div>
+      <div class="aside-feat"><div class="aside-feat-icon">👨‍👩‍👧‍👦</div><div class="aside-feat-text"><strong>Whole Family Covered</strong><span>Spouse, children &amp; extended family</span></div></div>
+      <hr class="aside-divider">
+      <div class="aside-fsca">🛡️ Fully registered with the <strong>FSCA</strong>. Your policy is protected by South African law.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">A Compassionate Partner When It Matters Most</h2>
+        <div class="divider-leaf">✦</div>
+        <p class="about-body">At Serene Memorial Assurance, we were founded on one belief: no South African family should face the cost of a funeral unprepared. Grief is heavy enough on its own.</p>
+        <p class="about-body">Since 2008, we have walked alongside more than 50 000 families during some of the most difficult moments of their lives – providing fast, reliable, and compassionate funeral cover that truly delivers.</p>
+        <p class="about-body">We are proudly South African, FSCA-registered, and built specifically for our communities – from small towns to big cities. Our consultants speak your language and understand your needs.</p>
+        <div class="about-values">
+          <div class="about-value"><span class="check-circle">✓</span> FSCA Registered</div>
+          <div class="about-value"><span class="check-circle">✓</span> Transparent Pricing</div>
+          <div class="about-value"><span class="check-circle">✓</span> 24-Hour Claims</div>
+          <div class="about-value"><span class="check-circle">✓</span> No Hidden Fees</div>
+          <div class="about-value"><span class="check-circle">✓</span> Empathetic Service</div>
+          <div class="about-value"><span class="check-circle">✓</span> Nationwide Cover</div>
+        </div>
+      </div>
+      <div class="about-right reveal">
+        <div class="about-promise">
+          <h3>Our Promise to You</h3>
+          <p>When you need us most, we will be there – quickly, carefully, and with full respect for your family's dignity.</p>
+          <ul class="about-promise-list">
+            <li>Claims paid within 24 hours of document submission</li>
+            <li>A dedicated consultant assigned to every family</li>
+            <li>Clear communication at every step of the process</li>
+            <li>No unnecessary delays or complicated paperwork</li>
+            <li>Support available around the clock, every day of the year</li>
+          </ul>
+        </div>
+        <div class="about-cert">
+          <div class="about-cert-icon">🏛️</div>
+          <div><strong>FSCA Licensed Insurer</strong>Serene Memorial Assurance (Pty) Ltd · FSP No. 45678 · Reg. No. 2008/012345/07. Regulated under the Long-term Insurance Act.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ POLICIES ══ -->
+<section id="policies">
+  <div class="section-inner">
+    <div class="section-header centered reveal">
+      <span class="section-label">Our Plans</span>
+      <h2 class="section-title">Straightforward Cover for Every Family</h2>
+      <div class="divider-leaf">✦</div>
+      <p class="section-lead">No jargon. No surprises. Choose the plan that fits your family and your budget.</p>
+    </div>
+    <div class="policies-grid">
+      <div class="policy-card reveal">
+        <div class="policy-header">
+          <div class="policy-tier-label">Starter Cover</div>
+          <div class="policy-name">Essential</div>
+          <div class="policy-price-row"><span class="policy-price-from">from R</span><span class="policy-price-main">50</span><span class="policy-price-per">/month</span></div>
+        </div>
+        <div class="policy-body">
+          <div class="policy-cover-box"><span class="policy-cover-label">Funeral Cover Amount</span><span class="policy-cover-amount">R 10 000</span></div>
+          <ul class="policy-features">
+            <li>Main member only</li>
+            <li>Accidental death – immediate cover</li>
+            <li>Natural death cover after 6 months</li>
+            <li>24-hour claims payout</li>
+            <li>No medical examination required</li>
+          </ul>
+          <button class="btn-policy btn-policy-outline" onclick="openModal(event)">Choose Essential</button>
+        </div>
+      </div>
+      <div class="policy-card featured reveal">
+        <div class="policy-header">
+          <span class="policy-popular">Most Chosen</span>
+          <div class="policy-tier-label">Family Cover</div>
+          <div class="policy-name">Family</div>
+          <div class="policy-price-row"><span class="policy-price-from">from R</span><span class="policy-price-main">130</span><span class="policy-price-per">/month</span></div>
+        </div>
+        <div class="policy-body">
+          <div class="policy-cover-box"><span class="policy-cover-label">Funeral Cover Amount</span><span class="policy-cover-amount">R 30 000</span></div>
+          <ul class="policy-features">
+            <li>Main member + spouse + 4 children</li>
+            <li>Accidental death – immediate cover</li>
+            <li>Natural death cover after 6 months</li>
+            <li>24-hour claims payout</li>
+            <li>R 2 500 grocery benefit on claim</li>
+            <li>Fixed premium – never increases</li>
+            <li>Repatriation assistance</li>
+          </ul>
+          <button class="btn-policy btn-policy-solid" onclick="openModal(event)">Choose Family</button>
+        </div>
+      </div>
+      <div class="policy-card reveal">
+        <div class="policy-header">
+          <div class="policy-tier-label">Full Extended Cover</div>
+          <div class="policy-name">Extended</div>
+          <div class="policy-price-row"><span class="policy-price-from">from R</span><span class="policy-price-main">250</span><span class="policy-price-per">/month</span></div>
+        </div>
+        <div class="policy-body">
+          <div class="policy-cover-box"><span class="policy-cover-label">Funeral Cover Amount</span><span class="policy-cover-amount">R 75 000</span></div>
+          <ul class="policy-features">
+            <li>Main member + spouse + 6 children</li>
+            <li>Up to 4 extended family members</li>
+            <li>Accidental death – immediate cover</li>
+            <li>Natural death cover after 6 months</li>
+            <li>24-hour claims payout</li>
+            <li>R 5 000 grocery benefit on claim</li>
+            <li>Tombstone benefit included</li>
+            <li>Repatriation &amp; transport cover</li>
+          </ul>
+          <button class="btn-policy btn-policy-outline" onclick="openModal(event)">Choose Extended</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY CHOOSE US ══ -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-header centered reveal">
+      <span class="section-label">Why Families Choose Us</span>
+      <h2 class="section-title">Benefits Built Around Your Peace of Mind</h2>
+      <div class="divider-leaf">✦</div>
+      <p class="section-lead">Everything we do is designed to give you and your family confidence, security, and genuine care.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal"><div class="benefit-icon-wrap">⚡</div><h3 class="benefit-title">24-Hour Claim Payout</h3><p class="benefit-text">We guarantee your claim is settled within 24 hours of receiving all required documents. Your family's grief should not be prolonged by financial uncertainty.</p></div>
+      <div class="benefit-card reveal"><div class="benefit-icon-wrap">🏥</div><h3 class="benefit-title">No Medical Exam Needed</h3><p class="benefit-text">Anyone between the ages of 18 and 75 can apply. No doctors, no health questions, no barriers. Simply fill in a short form and your cover begins.</p></div>
+      <div class="benefit-card reveal"><div class="benefit-icon-wrap">📌</div><h3 class="benefit-title">Fixed Monthly Premium</h3><p class="benefit-text">The premium you are quoted today is the premium you pay for life. It will never increase as you get older or if your health changes. Budget with full confidence.</p></div>
+      <div class="benefit-card reveal"><div class="benefit-icon-wrap">👨‍👩‍👧</div><h3 class="benefit-title">Whole Family Covered</h3><p class="benefit-text">Our plans extend to your spouse, your children, and even extended family members – all under one policy with one affordable monthly payment.</p></div>
+      <div class="benefit-card reveal"><div class="benefit-icon-wrap">📞</div><h3 class="benefit-title">Always Here for You</h3><p class="benefit-text">Our compassionate support team is available 24 hours a day, 7 days a week. When you call, a real person answers – not a machine.</p></div>
+      <div class="benefit-card reveal"><div class="benefit-icon-wrap">🇿🇦</div><h3 class="benefit-title">Built for South Africa</h3><p class="benefit-text">We understand the unique needs and traditions of South African families. Our team speaks your language and honours your culture with every interaction.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="howitworks">
+  <div class="section-inner">
+    <div class="section-header centered reveal">
+      <span class="section-label">Getting Started</span>
+      <h2 class="section-title">Three Simple Steps to Peace of Mind</h2>
+      <div class="divider-leaf">✦</div>
+      <p class="section-lead">Getting covered takes less time than you might think. We've made it as easy as possible.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step reveal"><div class="step-circle">1</div><h3 class="step-title">Choose Your Plan</h3><p class="step-text">Browse our three clear plans and choose the one that fits your family and budget. Our consultants are happy to help at no obligation.</p></div>
+      <div class="step reveal"><div class="step-circle">2</div><h3 class="step-title">Complete Your Application</h3><p class="step-text">Fill in a brief form – no medical exams required. Apply by phone, online, or at a branch. It takes just a few minutes.</p></div>
+      <div class="step reveal"><div class="step-circle">3</div><h3 class="step-title">You Are Covered</h3><p class="step-text">Receive your policy documents and rest easy. When a claim is needed, one call to us is all it takes – we handle the rest with care.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">Real Families, Real Stories</span>
+      <h2 class="section-title">Words From Those We Have Served</h2>
+      <div class="divider-leaf">✦</div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">When my husband passed away suddenly, I did not know where to turn. Serene Memorial Assurance paid out within 24 hours, just as they promised. That money allowed us to give him the dignified farewell he deserved without going into debt. I am grateful every day for this policy.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">N</div>
+          <div><div class="testimonial-name">Nomvula Dlamini</div><div class="testimonial-loc">Soweto, Gauteng</div><div class="testimonial-stars">★★★★★</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">I was cautious at first – I have heard of companies that make promises they cannot keep. But when we lost my mother, the claims consultant was kind, patient, and efficient. The payout was in our account the very next morning. I now tell everyone I know about Serene Memorial Assurance.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">T</div>
+          <div><div class="testimonial-name">Thabo Khumalo</div><div class="testimonial-loc">Pietermaritzburg, KwaZulu-Natal</div><div class="testimonial-stars">★★★★★</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLAIMS ══ -->
+<section id="claims">
+  <div class="section-inner">
+    <div class="claims-inner">
+      <div class="claims-left reveal">
+        <span class="section-label">Making a Claim</span>
+        <h2 class="section-title">We Make the Process as Easy as Possible</h2>
+        <p>Filing a claim at a time of loss should never feel like a burden. Our team handles everything with urgency, empathy, and respect so your family can focus on what truly matters.</p>
+        <ul class="claims-list">
+          <li><span class="claims-list-icon">📋</span><div><strong>Minimal Documentation</strong><span>Only a certified death certificate and your policy number are needed to begin</span></div></li>
+          <li><span class="claims-list-icon">📞</span><div><strong>One Phone Call to Start</strong><span>Call our 24/7 claims line and a consultant takes over from there</span></div></li>
+          <li><span class="claims-list-icon">💳</span><div><strong>Direct Bank Transfer</strong><span>Funds paid directly to the nominated beneficiary's bank account</span></div></li>
+        </ul>
+      </div>
+      <div class="claims-right reveal">
+        <div class="claims-big-num">24</div>
+        <span class="claims-big-label">Hour Claims Payout Guarantee</span>
+        <hr class="claims-divider">
+        <p>We settle claims within 24 hours of receiving all required documents. No delays, no excuses – just the cover you paid for, delivered with care and dignity.</p>
+        <button class="btn-green" onclick="openModal(event)" style="width:100%">Get Covered Today</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-header centered reveal">
+      <span class="section-label">Questions &amp; Answers</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="divider-leaf">✦</div>
+      <p class="section-lead">We want you to feel fully informed before you decide. Here are the questions we hear most often.</p>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">Who qualifies for funeral cover?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Any South African resident between the ages of 18 and 75 may apply. There is no medical examination and no health questionnaire. Simply complete the application and make your first payment. Accidental death cover starts immediately; natural death cover begins after a six-month waiting period, which is standard across the South African funeral insurance industry.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">How long does it take to receive a payout after a claim?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We guarantee payout within 24 hours of receiving all required documentation: a certified death certificate, your policy number, and the beneficiary's banking details. Our claims team will walk you through every step, and a dedicated consultant will remain in contact throughout.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">Can I add family members after joining?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. You can add or remove members at any time by contacting our customer care team. A small premium adjustment may apply. Newly added members will have their own six-month waiting period for natural death cover; accidental cover applies immediately.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">Will my monthly premium ever increase?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">No. Your premium is fixed at the rate quoted when you join. It will not increase as you age or if your health changes. The amount you pay today is the amount you will always pay for the same cover.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">Is Serene Memorial Assurance a registered insurer?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. We are fully licensed by the Financial Sector Conduct Authority (FSCA) under FSP No. 45678 and operate in full compliance with the Long-term Insurance Act and all Policyholder Protection Rules. Your policy is legally binding and your funds are protected.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT / FOOTER ══ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">We Are Here When You Need Us</h2>
+        <p>Whether you have a question about a policy, need to file a claim, or simply want to talk to someone – our team is ready to help, with warmth and without judgement.</p>
+        <div class="contact-details">
+          <div class="contact-detail"><span class="contact-detail-icon">📞</span><div><strong>Claims &amp; Support Line</strong><span>0800 123 456 · Toll-free · Available 24/7</span></div></div>
+          <div class="contact-detail"><span class="contact-detail-icon">✉️</span><div><strong>Email Us</strong><span>info@serenemem.co.za</span></div></div>
+          <div class="contact-detail"><span class="contact-detail-icon">📍</span><div><strong>Head Office</strong><span>12 Memorial Park Drive, Sandton, Johannesburg, 2196</span></div></div>
+          <div class="contact-detail"><span class="contact-detail-icon">🕐</span><div><strong>Office Hours</strong><span>Monday to Friday: 08:00–17:00 · Claims line: 24/7</span></div></div>
+        </div>
+      </div>
+      <div class="contact-form-panel reveal">
+        <h3>Send Us a Message</h3>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="First name"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="e.g. 082 000 0000"></div>
+        <div class="form-group"><label>How Can We Help?</label><select><option value="">Select a reason</option><option>Get a quote</option><option>Policy enquiry</option><option>File a claim</option><option>General question</option></select></div>
+        <div class="form-group"><label>Message (optional)</label><textarea rows="3" placeholder="Tell us more..." style="resize:vertical;"></textarea></div>
+        <button class="btn-green" style="width:100%">Send Message</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="footer-brand">Serene Memorial Assurance</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">FSCA Registration</a>
+      <a href="#faq">FAQs</a>
+    </div>
+    <div class="footer-copy">© 2025 Serene Memorial Assurance</div>
+  </div>
+  <div class="footer-disclaimer">
+    Serene Memorial Assurance (Pty) Ltd is an authorised financial services provider registered with the Financial Sector Conduct Authority (FSCA). Registration No. 2008/012345/07 · FSP Licence No. 45678. Premiums shown are indicative starting rates and may vary based on age, cover amount, and number of insured members. A six-month waiting period applies to natural death claims. Terms and conditions apply. Please read your policy document carefully. This website does not constitute financial advice.
+  </div>
+</section>
+
+<!-- ══ MODAL ══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2>Request a Free Quote</h2>
+      <p>Fill in your details and we will call you back within one hour.</p>
+      <button class="modal-close-btn" onclick="closeModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-form">
+      <div id="quoteFormInner">
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input type="text" id="mFirst" placeholder="First name"></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" id="mLast" placeholder="Last name"></div>
+        </div>
+        <div class="form-group"><label>Phone Number *</label><input type="tel" id="mPhone" placeholder="e.g. 082 000 0000"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="mEmail" placeholder="your@email.com"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Your Age *</label><input type="number" id="mAge" placeholder="e.g. 35" min="18" max="75"></div>
+          <div class="form-group"><label>Plan of Interest *</label><select id="mPlan"><option value="">Select a plan</option><option>Essential (R50/month)</option><option>Family (R130/month)</option><option>Extended (R250/month)</option><option>Not sure – please advise me</option></select></div>
+        </div>
+        <div class="form-group"><label>Family Members to Cover</label><select><option value="">Select</option><option>Just myself</option><option>Myself and spouse</option><option>Myself, spouse and children</option><option>Full extended family</option></select></div>
+        <button class="btn-green" style="width:100%;margin-top:6px;" onclick="submitQuote()">Request My Free Quote</button>
+        <p class="modal-note">🔒 Your personal information is safe with us and will never be shared.</p>
+      </div>
+      <div class="modal-success" id="modalSuccess">
+        <div class="success-mark">✅</div>
+        <h3>Thank You</h3>
+        <p>One of our consultants will call you back within one hour to help you choose the right cover for your family.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+
+  // Modal
+  function openModal(e) { if(e) e.preventDefault(); document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow='hidden'; document.getElementById('quoteFormInner').style.display='block'; document.getElementById('modalSuccess').style.display='none'; }
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); document.body.style.overflow=''; }
+  function closeModalOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+  function submitQuote() {
+    const f = document.getElementById('mFirst').value.trim();
+    const p = document.getElementById('mPhone').value.trim();
+    const a = document.getElementById('mAge').value.trim();
+    const pl= document.getElementById('mPlan').value;
+    if(!f||!p||!a||!pl){ alert('Please fill in all fields marked with *'); return; }
+    document.getElementById('quoteFormInner').style.display='none';
+    document.getElementById('modalSuccess').style.display='block';
+  }
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal'));
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => entry.target.classList.add('visible'), idx * 90);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
